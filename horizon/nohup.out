@@ -1,0 +1,9 @@
+Invalid HTTP_HOST header: '192.168.18.6'.You may need to add u'192.168.18.6' to ALLOWED_HOSTS.
+[31/Jul/2014 07:51:13] "GET / HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '192.168.18.6'.You may need to add u'192.168.18.6' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '192.168.18.6'.You may need to add u'192.168.18.6' to ALLOWED_HOSTS.
+[31/Jul/2014 07:51:17] "GET / HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '192.168.18.6'.You may need to add u'192.168.18.6' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '192.168.18.6'.You may need to add u'192.168.18.6' to ALLOWED_HOSTS.
+[31/Jul/2014 07:51:58] "GET / HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '192.168.18.6'.You may need to add u'192.168.18.6' to ALLOWED_HOSTS.

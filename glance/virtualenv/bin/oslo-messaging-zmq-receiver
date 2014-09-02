@@ -1,0 +1,10 @@
+#!/opt/glance/virtualenv/bin/python
+# PBR Generated from u'console_scripts'
+
+import sys
+
+from oslo.messaging._cmd.zmq_receiver import main
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,43 @@
+Metadata-Version: 2.0
+Name: python-heatclient
+Version: 0.2.10
+Summary: OpenStack Orchestration API Client Library
+Home-page: http://www.openstack.org/
+Author: OpenStack
+Author-email: openstack-dev@lists.openstack.org
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Environment :: OpenStack
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Requires-Dist: iso8601 (>=0.1.9)
+Requires-Dist: pbr (>=0.6,!=0.7,<1.0)
+Requires-Dist: PrettyTable (>=0.7,<0.8)
+Requires-Dist: python-keystoneclient (>=0.9.0)
+Requires-Dist: PyYAML (>=3.1.0)
+Requires-Dist: requests (>=1.1)
+Requires-Dist: six (>=1.7.0)
+
+Python bindings to the Heat orchestration API
+=============================================
+
+This is a client library for Heat built on the Heat orchestration API. It
+provides a Python API (the ``heatclient`` module) and a command-line tool
+(``heat``).
+
+Development takes place via the usual OpenStack processes as outlined in the
+`OpenStack wiki <http://wiki.openstack.org/HowToContribute>`_.  The master
+repository is on `GitHub <http://github.com/heat-api/python-heatclient>`_.
+
+See release notes and more at `<http://docs.openstack.org/developer/python-heatclient/>`_.
+
+
+

@@ -1,0 +1,5 @@
+DEVICE=${$interface.name}
+ONBOOT=yes
+BOOTPROTO=static
+IPADDR=${$interface.address}
+NETMASK=${$interface.netmask}

@@ -1,0 +1,13 @@
+[cliff.formatter.completion]
+none = cliff.complete:CompleteNoCode
+bash = cliff.complete:CompleteBash
+
+[cliff.formatter.list]
+table = cliff.formatters.table:TableFormatter
+csv = cliff.formatters.commaseparated:CSVLister
+
+[cliff.formatter.show]
+table = cliff.formatters.table:TableFormatter
+shell = cliff.formatters.shell:ShellFormatter
+value = cliff.formatters.value:ValueFormatter
+

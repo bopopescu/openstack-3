@@ -1,0 +1,25 @@
+[oslo.config.opts]
+oslo.messaging = oslo.messaging.opts:list_opts
+
+[oslo.messaging.notify.drivers]
+log = oslo.messaging.notify._impl_log:LogDriver
+messagingv2 = oslo.messaging.notify._impl_messaging:MessagingV2Driver
+noop = oslo.messaging.notify._impl_noop:NoOpDriver
+routing = oslo.messaging.notify._impl_routing:RoutingDriver
+test = oslo.messaging.notify._impl_test:TestDriver
+messaging = oslo.messaging.notify._impl_messaging:MessagingDriver
+
+[oslo.messaging.executors]
+blocking = oslo.messaging._executors.impl_blocking:BlockingExecutor
+eventlet = oslo.messaging._executors.impl_eventlet:EventletExecutor
+
+[console_scripts]
+oslo-messaging-zmq-receiver = oslo.messaging._cmd.zmq_receiver:main
+
+[oslo.messaging.drivers]
+qpid = oslo.messaging._drivers.impl_qpid:QpidDriver
+zmq = oslo.messaging._drivers.impl_zmq:ZmqDriver
+kombu = oslo.messaging._drivers.impl_rabbit:RabbitDriver
+rabbit = oslo.messaging._drivers.impl_rabbit:RabbitDriver
+fake = oslo.messaging._drivers.impl_fake:FakeDriver
+

@@ -1,0 +1,34 @@
+{% load i18n %}
+<div class="table_actions clearfix">
+{% block table_filter %}
+    {% if filter.filter_type == 'fixed' %}
+    <div class="table_filter btn-group" data-toggle="buttons-radio">
+        {% for button in filter.fixed_buttons %}
+        <button name="{{ filter.get_param_name }}" type="submit" value="{{ button.value }}" class="btn btn-small{% ifequal button.value filter.filter_string %} active{% endifequal %}">{% if button.icon %}<i class="{{ button.icon }}"></i> {% endif %}{{ button.text }}{% if button.count >= 0 %} ({{ button.count }}){% endif %}</button>
+        {% endfor %}
+    </div>
+    {% elif filter.filter_type == 'query' %}
+    <div class="table_search client">
+        <input class="span3 example" value="{{ filter.filter_string|default:'' }}" type="text" name="{{ filter.get_param_name }}" />
+        <button type="submit" {{ filter.attr_string|safe }}>{% trans "Filter" %}</button>
+    </div>
+    {% elif filter.filter_type == 'server' %}
+    <div class="table_search">
+            <select name="{{ filter.get_param_name }}_field" class="span2">
+                {% for choice in filter.filter_choices %}
+                <option value="{{ choice.0 }}" {% if choice.0 == filter.filter_field %} selected{% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        <input class="span3 example" value="{{ filter.filter_string|default:'' }}" type="text" name="{{ filter.get_param_name }}" />
+        <button type="submit" {{ filter.attr_string|safe }}>{% trans "Filter" %}</button>
+    </div>
+    {% endif %}
+{% endblock table_filter %}
+{% block table_actions %}
+    {% for action in table_actions %}
+        {% if action != filter %}
+            {%  include "horizon/common/_data_table_table_action.html" %}
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endblock table_actions %}

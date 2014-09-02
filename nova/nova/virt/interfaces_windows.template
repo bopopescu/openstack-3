@@ -1,0 +1,32 @@
+echo off
+route delete 0.0.0.0
+#for $ifc in $interfaces
+#if $ifc.priority
+set ip_pub=${ifc.address}
+set netmask_pub=${ifc.netmask}
+set gw_pub=${ifc.gateway}
+netsh interface ip set address "network2" static %ip_pub% %netmask_pub% %gw_pub% 1
+#for $route in $ifc.routes
+route add 0.0.0.0 ${route.gateway} -p
+#end for
+netsh interface ip set address "network2" static %ip_pub% %netmask_pub% %gw_pub% 1
+netsh interface ipv4 set interface "network2" weakhostreceive=enabled weakhostsend=enabled
+#else
+set ip_pri=${ifc.address}
+set netmask_pri=${ifc.netmask}
+#if $ifc.gateway
+set gw_pri=${ifc.gateway}
+netsh interface ip set address "network1" static %ip_pri% %netmask_pri% %gw_pri% 1
+#else
+netsh interface ip set address "network1" static %ip_pri% %netmask_pri%
+#end if
+netsh interface ipv4 set interface "network1" weakhostreceive=enabled weakhostsend=enabled
+#for $route in $ifc.routes
+route add ${route.route} mask ${route.netmask} ${route.gateway} -p
+#end for
+#end if
+#end for
+IF EXIST c:\pwd.bat (
+    call c:\pwd.bat
+    del  c:\pwd.bat
+)

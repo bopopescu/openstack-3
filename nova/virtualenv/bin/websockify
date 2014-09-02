@@ -1,0 +1,10 @@
+#!/opt/nova/virtualenv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'websockify==0.5.1','console_scripts','websockify'
+__requires__ = 'websockify==0.5.1'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('websockify==0.5.1', 'console_scripts', 'websockify')()
+    )

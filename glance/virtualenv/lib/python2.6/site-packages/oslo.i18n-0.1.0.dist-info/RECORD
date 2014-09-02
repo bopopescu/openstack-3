@@ -1,0 +1,17 @@
+oslo.i18n-0.1.0-py2.7-nspkg.pth,sha256=igc2BikfFQ1MKlXeyvgsHzE6JND31I02bNWpFUcWcBA,301
+oslo/i18n/__init__.py,sha256=IAvEDM46K36MthvCWXzoxFmiSqFvjG4YPn5ITvcrizM,673
+oslo/i18n/_locale.py,sha256=x_5QJjTUqT-wEdg-yk8BCcGRQfwk4DmEdNXTdogcOeQ,935
+oslo/i18n/_i18n.py,sha256=ogXwdVl_wsUo-wXI8kSv_US9uQH2jR-YbVDfI469LL8,934
+oslo/i18n/_translate.py,sha256=j1D-0M7lPoxGCg-3rqYg5E4infJ5dD2Fc2HrsQ442_w,2871
+oslo/i18n/_gettextutils.py,sha256=Jhh5VxzJcqwI_gCDPLG9XA7eobsqJJ_PXy9LJ4uiif8,3323
+oslo/i18n/_lazy.py,sha256=P04nojyM_PHo1kLZ_uNTBN1d3zzRXLzVx5k-ziNCQ3s,1266
+oslo/i18n/_message.py,sha256=-QtW3tlL-uKrQbCPyJNKBHkAsFbOzLCIe8H6-wty4fw,6806
+oslo/i18n/_factory.py,sha256=xQry65ICfU-V1rV9ONuCn4WIyy2wdIqceMwkyWELoSg,3650
+oslo/i18n/log.py,sha256=XL5yGtjXlZXgLYljRDNOI-X6JEBN7Hw9AUkSFlFkYjA,3327
+oslo.i18n-0.1.0.dist-info/top_level.txt,sha256=Qk9EA1I9vwB1TAbWJsqWTIMgU-7JdHgdH0K4uNWK4tU,5
+oslo.i18n-0.1.0.dist-info/METADATA,sha256=_dUuXws0K4V25CGObtoOpnRNsUMTgRjuKnKZmf-V4k4,1311
+oslo.i18n-0.1.0.dist-info/WHEEL,sha256=ezCcn6hld-MyC17SOsNqTdQahHRaqyIDJy1OPLTXS0o,92
+oslo.i18n-0.1.0.dist-info/namespace_packages.txt,sha256=Qk9EA1I9vwB1TAbWJsqWTIMgU-7JdHgdH0K4uNWK4tU,5
+oslo.i18n-0.1.0.dist-info/metadata.json,sha256=PA6CFi6r4r49CZ-BRRNcCzCqAdDHwkGJEbMHM3FVIdo,998
+oslo.i18n-0.1.0.dist-info/DESCRIPTION.rst,sha256=JE04mmk4uVTCb6PBPmtSWOPfJAumBC2avrORcnAaM74,516
+oslo.i18n-0.1.0.dist-info/RECORD,,

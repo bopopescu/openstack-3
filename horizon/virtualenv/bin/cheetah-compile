@@ -1,0 +1,3 @@
+#!/opt/horizon/virtualenv/bin/python
+from Cheetah.CheetahWrapper import _cheetah_compile
+_cheetah_compile()

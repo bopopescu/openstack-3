@@ -1,0 +1,17 @@
+diff --git a/nova/virt/libvirt/driver.py b/nova/virt/libvirt/driver.py
+index 5167c67..698c807 100644
+--- a/nova/virt/libvirt/driver.py
++++ b/nova/virt/libvirt/driver.py
+@@ -4748,6 +4748,12 @@ class LibvirtDriver(driver.ComputeDriver):
+             os.mkdir(instance_dir)
+ 
+         if not is_shared_block_storage:
++            # Get instacne_dir 
++            if instance_relative_path:
++                instance_dir = os.path.join(CONF.instances_path,
++                                            instance_relative_path)
++            else:
++                instance_dir = libvirt_utils.get_instance_path(instance)
+             # Ensure images and backing files are present.
+             self._create_images_and_backing(context, instance,
+                                             instance_dir, disk_info)

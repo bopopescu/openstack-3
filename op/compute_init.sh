@@ -10,7 +10,7 @@ yum install -y python-pip python-virtualenv curl wget \
                erlang rabbitmq-server-3.2.2 mysql \
                libguestfs python-libguestfs libguestfs-tools \
                mysql-server MySQL-python libvirt libvirt-client \
-               libvirt-devel libvirt-python
+               libvirt-devel libvirt-python dnsmasq-utils dnsmasq
 
 # change hostname
 #hostname $HOSTNAME

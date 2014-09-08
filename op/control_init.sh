@@ -15,7 +15,7 @@ yum install -y python-pip python-virtualenv curl wget \
                netcf-libs java-1.7.0-openjdk qemu-img \
                erlang rabbitmq-server-3.2.2 mysql \
                libguestfs python-libguestfs libguestfs-tools \
-               mysql-server MySQL-python memcached
+               mysql-server MySQL-python memcached mod_wsgi
 #yum install -y libvirt libvirt-client libvirt-devel libvirt-python
 
 # change hostname
@@ -46,6 +46,33 @@ cp  /opt/op/horizon.conf /etc/httpd/conf.d/
 chkconfig httpd on
 service httpd restart
 
+# create folder
+# host data directory
+rm -rf /openstack
+rm -rf /datapool/*
+
+mkdir -p /openstack/keystone/log \
+        /openstack/keystone/run \
+        /openstack/glance/log \
+        /openstack/glance/run \
+        /openstack/cinder/log \
+        /openstack/cinder/run \
+        /openstack/nova/log \
+        /openstack/nova/run \
+        /openstack/nova/networks 
+
+# shared storage
+mkdir -p /datapool/openstack/glance/images \
+        /datapool/openstack/glance/image_cache \
+        /datapool/openstack/cinder/pofs \
+        /datapool/openstack/nova/instances 
+
+#link shared storage
+ln -s /datapool/openstack/glance/images /openstack/glance/
+ln -s /datapool/openstack/glance/image_cache /openstack/glance/
+ln -s /datapool/openstack/cinder/pofs /openstack/cinder/
+ln -s /datapool/openstack/nova/instances /openstack/nova/
+
 # edit & copy mysql conf
 mv /etc/my.cnf /etc/my.cnf.bak
 cp /opt/op/my.cnf /etc/
@@ -57,39 +84,12 @@ if [ ! -f /var/run/mysqld/mysqld.pid ]; then
     mysql_secure_installation 
 fi
 
-# create folder
-if [ ! -d /openstack/keystone ]; then
-    # host data directory
-    mkdir -p /openstack/keystone/log \
-             /openstack/keystone/run \
-             /openstack/glance/log \
-             /openstack/glance/run \
-             /openstack/cinder/log \
-             /openstack/cinder/run \
-             /openstack/nova/log \
-             /openstack/nova/run \
-             /openstack/nova/networks 
-
-    # shared storage
-    mkdir -p /datapool/openstack/glance/images \
-             /datapool/openstack/glance/image_cache \ 
-             /datapool/openstack/cinder/pofs \
-             /datapool/openstack/nova/instances 
-
-    #link shared storage
-    ln -s /datapool/openstack/glance/images /openstack/glance/
-    ln -s /datapool/openstack/glance/image_cache /openstack/glance/
-    ln -s /datapool/openstack/cinder/pofs /openstack/cinder/
-    ln -s /datapool/openstack/nova/instances /openstack/nova/
-fi
 
 # add user
-if ! id keystone ; then
-    useradd -c 'OpenStack keystone Daemons' -s /sbin/nologin -d /home/keystone  keystone -M
-    useradd -c 'OpenStack glance Daemons' -s /sbin/nologin -d /home/glance glance -M
-    useradd -c 'OpenStack nova Daemons' -s /sbin/nologin -d /home/nova  nova  -M
-    useradd -c 'OpenStack cinder Daemons' -s /sbin/nologin -d /home/cinder cinder -M
-fi
+useradd -c 'OpenStack keystone Daemons' -s /sbin/nologin -d /home/keystone  keystone -M
+useradd -c 'OpenStack glance Daemons' -s /sbin/nologin -d /home/glance glance -M
+useradd -c 'OpenStack nova Daemons' -s /sbin/nologin -d /home/nova  nova  -M
+useradd -c 'OpenStack cinder Daemons' -s /sbin/nologin -d /home/cinder cinder -M
 
 # chown permission
 chown -R keystone:keystone /openstack/keystone
@@ -101,14 +101,19 @@ chown -R cinder:cinder /openstack/cinder
 chown -R cinder:cinder /datapool/openstack/cinder
 
 # copy etc && init.d
-if [ ! -d /etc/keystone ]; then
-    cp -rf /opt/etc/keystone /etc/
-    cp -rf /opt/etc/nova /etc/
-    cp -rf /opt/etc/glance /etc/
-    cp -rf /opt/etc/cinder /etc/
+rm -rf /etc/keystone
+cp -rf /opt/etc/keystone /etc/
+
+rm -rf /etc/nova
+cp -rf /opt/etc/nova /etc/
+
+rm -rf /etc/glance
+cp -rf /opt/etc/glance /etc/
+
+rm -rf /etc/cinder
+cp -rf /opt/etc/cinder /etc/
     
-    cp -f /opt/etc/init.d/* /etc/init.d/
-fi
+cp -f /opt/etc/init.d/* /etc/init.d/
 
 # add nova sudoer
 if ! cat /etc/sudoers | grep nova ;then
@@ -116,15 +121,13 @@ if ! cat /etc/sudoers | grep nova ;then
 fi
 
 # link binary 
-if [ ! -f /usr/bin/keystone ]; then
-    ln -sf /opt/keystone/virtualenv/bin/keystone* /usr/bin/
-    ln -sf /opt/glance/virtualenv/bin/glance* /usr/bin/
-    ln -sf /opt/nova/virtualenv/bin/nova* /usr/bin/
-    ln -sf /opt/cinder/virtualenv/bin/cinder* /usr/bin/
-    ln -sf /opt/python-cinderclient/virtualenv/bin/cinder /usr/bin/
-    ln -sf /opt/python-novaclient/virtualenv/bin/nova  /usr/bin/
-    ln -sf /opt/python-glanceclient/virtualenv/bin/glance  /usr/bin/
-fi
+ln -sf /opt/keystone/virtualenv/bin/keystone* /usr/bin/
+ln -sf /opt/glance/virtualenv/bin/glance* /usr/bin/
+ln -sf /opt/nova/virtualenv/bin/nova* /usr/bin/
+ln -sf /opt/cinder/virtualenv/bin/cinder* /usr/bin/
+ln -sf /opt/python-cinderclient/virtualenv/bin/cinder /usr/bin/
+ln -sf /opt/python-novaclient/virtualenv/bin/nova  /usr/bin/
+ln -sf /opt/python-glanceclient/virtualenv/bin/glance  /usr/bin/
 
 # create database
 mysql -uroot -p$DBPASS_ROOT -e 'CREATE DATABASE IF NOT EXISTS keystone;' 

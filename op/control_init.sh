@@ -92,6 +92,8 @@ useradd -c 'OpenStack nova Daemons' -s /sbin/nologin -d /home/nova  nova  -M
 useradd -c 'OpenStack cinder Daemons' -s /sbin/nologin -d /home/cinder cinder -M
 
 # chown permission
+chown -R apache:apache horizon
+chown -R apache:apache horizon-new
 chown -R keystone:keystone /openstack/keystone
 chown -R glance:glance /openstack/glance
 chown -R glance:glance /datapool/openstack/glance

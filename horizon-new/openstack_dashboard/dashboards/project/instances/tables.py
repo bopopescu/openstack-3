@@ -836,6 +836,7 @@ class InstancesTable(tables.DataTable):
         row_class = UpdateRow
         table_actions = (LaunchLink, SoftRebootInstance, TerminateInstance,
                          InstancesFilterAction)
+        """
         row_actions = (StartInstance, ConfirmResize, RevertResize,
                        CreateSnapshot, SimpleAssociateIP, AssociateIP,
                        SimpleDisassociateIP, EditInstance,
@@ -843,3 +844,11 @@ class InstancesTable(tables.DataTable):
                        ConsoleLink, LogLink, TogglePause, ToggleSuspend,
                        ResizeLink, SoftRebootInstance, RebootInstance,
                        StopInstance, RebuildInstance, TerminateInstance)
+        """
+        row_actions = (StartInstance, ConfirmResize, RevertResize,
+                       CreateSnapshot, EditInstance,
+                       DecryptInstancePassword, EditInstanceSecurityGroups,
+                       ConsoleLink, LogLink, TogglePause, ToggleSuspend,
+                       ResizeLink, SoftRebootInstance, RebootInstance,
+                       StopInstance, RebuildInstance, TerminateInstance)
+ 
